@@ -48,10 +48,14 @@ def convert_date_range(from_date: date, to_date: date):
         tzinfo=STORE_TIMEZONE,
     )
 
-    return (
-        local_start.astimezone(timezone.utc).isoformat(),
-        local_end.astimezone(timezone.utc).isoformat(),
-    )
+return (
+    local_start.astimezone(timezone.utc).strftime(
+        "%Y-%m-%dT%H:%M:%S.000Z"
+    ),
+    local_end.astimezone(timezone.utc).strftime(
+        "%Y-%m-%dT%H:%M:%S.000Z"
+    ),
+)
 
 
 async def fetch_all(endpoint: str, collection_name: str, params=None):
