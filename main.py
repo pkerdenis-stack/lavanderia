@@ -139,7 +139,9 @@ async def receipts(
         },
         "receipts": records,
     }
-    @app.get("/modifiers")
+
+
+@app.get("/modifiers")
 async def modifiers():
     records = await fetch_all("modifiers", "modifiers")
 
