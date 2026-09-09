@@ -152,3 +152,31 @@ async def receipts(
         },
         "receipts": records,
     }
+    
+    @app.get("/shifts")
+async def shifts(
+    from_date: date = Query(..., description="YYYY-MM-DD"),
+    to_date: date = Query(..., description="YYYY-MM-DD"),
+):
+    created_at_min, created_at_max = convert_date_range(
+        from_date,
+        to_date,
+    )
+
+    records = await fetch_all(
+        "shifts",
+        "shifts",
+        {
+            "created_at_min": created_at_min,
+            "created_at_max": created_at_max,
+        },
+    )
+
+    return {
+        "count": len(records),
+        "filters": {
+            "from_date": from_date.isoformat(),
+            "to_date": to_date.isoformat(),
+        },
+        "shifts": records,
+    }
