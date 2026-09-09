@@ -153,7 +153,7 @@ async def receipts(
         "receipts": records,
     }
     
-    @app.get("/shifts")
+@app.get("/shifts")
 async def shifts(
     from_date: date = Query(..., description="YYYY-MM-DD"),
     to_date: date = Query(..., description="YYYY-MM-DD"),
